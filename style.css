@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#wrap {
+  background: url(img/back.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container {
+  background-color: #fff;
+  min-height: 100vh;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.tabs_area {
+  border: 2px solid #ddd;
+}
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  position: relative;
+}
+.tabs div {
+  padding: 1em;
+}
+#under_line {
+  position: absolute;
+  height: 4px;
+  width: 60px;
+  padding: 0;
+  left: 0;
+  top: 52px;
+  background-color: crimson;
+}
+.task {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
