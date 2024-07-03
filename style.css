@@ -3,21 +3,23 @@
   padding: 0;
 }
 #wrap {
-  background: url(img/back.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  width: 100%;
+  max-width: 992px;
+  margin: 0 auto;
 }
 .container {
   background-color: #fff;
   min-height: 100vh;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 1em;
+  position: relative;
 }
 .tabs_area {
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
 }
 .tabs {
   display: flex;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 1px solid #ddd;
   position: relative;
 }
 .tabs div {
@@ -26,14 +28,52 @@
 #under_line {
   position: absolute;
   height: 4px;
-  width: 60px;
-  padding: 0;
-  left: 0;
   top: 52px;
-  background-color: crimson;
+  left: 0px;
+  width: 70px;
+  transition: 0.5s;
+  padding: 0px;
+  background-color: royalblue;
 }
 .task {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+.task span {
   padding: 1em;
+}
+.task_done {
+  text-decoration: line-through;
+  background-color: #ddd;
+  transition: 0.5s;
+}
+.button-box {
+  display: flex;
+}
+.button-box button {
+  height: 100%;
+  border: none;
+  width: 5em;
+  margin: 0;
+  background-color: white;
+  transition: 0.5s;
+}
+
+.button-box button:first-child:hover {
+  background-color: palegreen;
+}
+.button-box button:nth-child(2):hover {
+  background-color: antiquewhite;
+}
+.fa-check {
+  color: green;
+}
+.fa-rotate-left {
+  color: indigo;
+}
+.fa-trash-can {
+  color: orangered;
 }
