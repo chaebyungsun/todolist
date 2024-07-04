@@ -1,6 +1,19 @@
 let taskInput = document.getElementById("task_input"); // 입력 필드를 가져옴
 let addButton = document.getElementById("add_button"); // 추가 버튼을 가져옴
+let tabs = document.querySelectorAll(".tabs div");
+let underLine = document.getElementById("under_line");
 let taskList = []; // 할 일 목록을 저장할 빈 배열로 초기화
+let mode = "all";
+let filterList = [];
+
+console.log(underLine);
+
+for (let i = 0; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", function (event) {
+    filter(event);
+  });
+}
+console.log(tabs);
 
 addButton.addEventListener("click", addTask); // 추가 버튼 클릭 시 addTask 함수 실행
 taskInput.addEventListener("keydown", function (event) {
@@ -8,6 +21,7 @@ taskInput.addEventListener("keydown", function (event) {
     addTask();
   }
 });
+
 // 할 일을 추가하는 함수
 function addTask() {
   let taskValue = taskInput.value;
@@ -26,22 +40,32 @@ function addTask() {
 
 // 할 일 목록을 화면에 렌더링하는 함수
 function render() {
+  // 선택한 탭에 따라
+  let list = [];
+  if (mode === "all") {
+    list = taskList;
+  } else if (mode === "ongoing" || mode === "done") {
+    list = filterList;
+  }
+
+  // 다르게 보여준다
+
   let resultHTML = ""; // 결과 HTML을 저장할 변수 초기화
-  for (let i = 0; i < taskList.length; i++) {
-    if (taskList[i].isComplete == true) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].isComplete == true) {
       resultHTML += `<div class="task task_done">
-                <span>${taskList[i].taskContent}</span>
+                <span>${list[i].taskContent}</span>
                 <div class="button-box">
-                  <button onclick="toggleComplete('${taskList[i].id}')"><i class="fa fa-rotate-left"></i></button>
-                  <button onclick="deleteTask('${taskList[i].id}')"><i class="fa fa-trash-can"></i></button>
+                  <button onclick="toggleComplete('${list[i].id}')"><i class="fa fa-rotate-left"></i></button>
+                  <button onclick="deleteTask('${list[i].id}')"><i class="fa fa-trash-can"></i></button>
                 </div>
               </div>`;
     } else {
       resultHTML += `<div class="task">
-        <span>${taskList[i].taskContent}</span>
+        <span>${list[i].taskContent}</span>
         <div class="button-box">
-          <button onclick="toggleComplete('${taskList[i].id}')"><i class="fa fa-check"></i></button>
-          <button onclick="deleteTask('${taskList[i].id}')"><i class="fa fa-trash-can"></i></button>
+          <button onclick="toggleComplete('${list[i].id}')"><i class="fa fa-check"></i></button>
+          <button onclick="deleteTask('${list[i].id}')"><i class="fa fa-trash-can"></i></button>
         </div>
       </div>`;
     }
@@ -57,6 +81,7 @@ function toggleComplete(id) {
       break;
     }
   }
+  filter({ target: { id: mode } }); // 현재 모드로 필터를 다시 적용
   render(); // 변경된 상태를 화면에 렌더링
   console.log(taskList); // 현재 할 일 목록을 콘솔에 출력
 }
@@ -69,7 +94,43 @@ function deleteTask(id) {
       break;
     }
   }
+  filter({ target: { id: mode } }); // 현재 모드로 필터를 다시 적용
   render();
+}
+
+function filter(event) {
+  if (event) {
+    mode = event.target.id; // 각 탭의 아이디를 변수로 지정해서 사용
+    underLine.style.width = event.target.offsetWidth + "px";
+    underLine.style.left = event.target.offsetLeft + "px";
+    underLine.style.top =
+      event.target.offsetTop + event.target.offsetHeight - 3 + "px";
+  }
+
+  filterList = [];
+  if (mode === "all") {
+    // 전체 할 일를 보여줌
+    render();
+  } else if (mode === "ongoing") {
+    // 진행중인 할 일을 보여줌
+    // task.isComplete = false
+    for (let i = 0; i < taskList.length; i++) {
+      if (taskList[i].isComplete === false) {
+        filterList.push(taskList[i]);
+      }
+    }
+    render();
+    console.log("진행중", filterList);
+  } else if (mode === "done") {
+    // 끝나는 일
+    // task.isComplete = true
+    for (let i = 0; i < taskList.length; i++) {
+      if (taskList[i].isComplete === true) {
+        filterList.push(taskList[i]);
+      }
+    }
+    render();
+  }
 }
 
 // 고유 ID를 생성하는 함수

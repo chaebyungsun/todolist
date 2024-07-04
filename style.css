@@ -2,20 +2,53 @@
   margin: 0;
   padding: 0;
 }
-#wrap {
+@import url("https://fonts.googleapis.com/css2?family=Dongle&display=swap");
+body {
+  background-color: skyblue;
   width: 100%;
   max-width: 992px;
   margin: 0 auto;
+  font-size: 1.5em;
+  font-family: "Dongle", sans-serif;
+}
+h1 {
+  color: royalblue;
+  font-size: 3em;
+  text-align: center;
 }
 .container {
   background-color: #fff;
   min-height: 100vh;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin-top: 1em;
+  padding: 50px;
   position: relative;
 }
+.input {
+  display: flex;
+  justify-content: center;
+}
+#task_input {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+#task_input:focus {
+  outline: none;
+  border-bottom: 2px solid black;
+}
+#add_button {
+  display: none;
+  border: none;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
 .tabs_area {
-  border: 1px solid #ddd;
+  margin-top: 1em;
 }
 .tabs {
   display: flex;
@@ -23,17 +56,25 @@
   position: relative;
 }
 .tabs div {
-  padding: 1em;
+  margin: 0 auto;
+  color: cornflowerblue;
+  padding: 0.5em 1em;
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+}
+.tabs div:first-child {
+  padding-right: 0.5em;
 }
 #under_line {
   position: absolute;
   height: 4px;
-  top: 52px;
   left: 0px;
-  width: 70px;
-  transition: 0.5s;
+  bottom: 0px;
   padding: 0px;
-  background-color: royalblue;
+  transition: 0.3s all;
+  width: 33%;
+  background-color: lavender;
 }
 .task {
   display: flex;
@@ -47,7 +88,7 @@
 }
 .task_done {
   text-decoration: line-through;
-  background-color: #ddd;
+  background-color: aliceblue;
   transition: 0.5s;
 }
 .button-box {
