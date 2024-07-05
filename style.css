@@ -56,7 +56,6 @@ h1 {
   position: relative;
 }
 .tabs div {
-  margin: 0 auto;
   color: cornflowerblue;
   padding: 0.5em 1em;
   flex: 1;
@@ -69,9 +68,9 @@ h1 {
 #under_line {
   position: absolute;
   height: 4px;
-  left: 0px;
-  bottom: 0px;
-  padding: 0px;
+  left: 0;
+  bottom: 0;
+  padding: 0;
   transition: 0.3s all;
   width: 33%;
   background-color: lavender;
@@ -97,7 +96,7 @@ h1 {
 .button-box button {
   height: 100%;
   border: none;
-  width: 5em;
+  width: 2.5em;
   margin: 0;
   background-color: white;
   transition: 0.5s;

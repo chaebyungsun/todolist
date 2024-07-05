@@ -81,7 +81,7 @@ function toggleComplete(id) {
       break;
     }
   }
-  filter({ target: { id: mode } }); // 현재 모드로 필터를 다시 적용
+  filter(); // 현재 모드로 필터를 다시 적용
   render(); // 변경된 상태를 화면에 렌더링
   console.log(taskList); // 현재 할 일 목록을 콘솔에 출력
 }
@@ -94,7 +94,7 @@ function deleteTask(id) {
       break;
     }
   }
-  filter({ target: { id: mode } }); // 현재 모드로 필터를 다시 적용
+  filter(); // 현재 모드로 필터를 다시 적용
   render();
 }
 
