@@ -6,7 +6,12 @@ let taskList = []; // 할 일 목록을 저장할 빈 배열로 초기화
 let mode = "all";
 let filterList = [];
 
-console.log(underLine);
+addButton.addEventListener("click", addTask); // 추가 버튼 클릭 시 addTask 함수 실행
+taskInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    addTask();
+  }
+});
 
 for (let i = 0; i < tabs.length; i++) {
   tabs[i].addEventListener("click", function (event) {
@@ -14,13 +19,6 @@ for (let i = 0; i < tabs.length; i++) {
   });
 }
 console.log(tabs);
-
-addButton.addEventListener("click", addTask); // 추가 버튼 클릭 시 addTask 함수 실행
-taskInput.addEventListener("keydown", function (event) {
-  if (event.key === `Enter`) {
-    addTask();
-  }
-});
 
 // 할 일을 추가하는 함수
 function addTask() {
